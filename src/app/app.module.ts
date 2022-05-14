@@ -47,6 +47,7 @@ import { SignupComponent } from './signup/signup.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { LoginComponent } from './login/login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { HomeComponent } from './home/home.component';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -62,6 +63,7 @@ import { environment } from '../environments/environment';
         SignupComponent,
         VerifyEmailComponent,
         LoginComponent,
+        HomeComponent,
         ForgotPasswordComponent
     ],
     imports: [
