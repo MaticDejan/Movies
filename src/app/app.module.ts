@@ -45,6 +45,8 @@ import { MatTreeModule } from '@angular/material/tree';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './signup/signup.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
+import { LoginComponent } from './login/login.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -58,7 +60,9 @@ import { environment } from '../environments/environment';
     declarations: [
         AppComponent,
         SignupComponent,
-        VerifyEmailComponent
+        VerifyEmailComponent,
+        LoginComponent,
+        ForgotPasswordComponent
     ],
     imports: [
         BrowserModule,
