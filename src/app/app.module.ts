@@ -43,6 +43,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SignupComponent } from './signup/signup.component';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -54,7 +56,9 @@ import { environment } from '../environments/environment';
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        SignupComponent,
+        VerifyEmailComponent
     ],
     imports: [
         BrowserModule,
