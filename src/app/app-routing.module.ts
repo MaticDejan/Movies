@@ -6,7 +6,8 @@ import { SignupComponent } from './signup/signup.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { LoginComponent } from './login/login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-
+import { AuthGuard } from './services/auth.guard';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -14,7 +15,9 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
     { path: 'verify-email', component: VerifyEmailComponent },
-                     // catch-all in case no other path matched
+    { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+    { path: '**', component: HomeComponent }
+    // catch-all in case no other path matched
 ];
 
 @NgModule({
