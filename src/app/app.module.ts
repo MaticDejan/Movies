@@ -1,12 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-
-
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
@@ -48,14 +44,20 @@ import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { LoginComponent } from './login/login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { HomeComponent } from './home/home.component';
-
 import { HttpClientModule } from '@angular/common/http';
-
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-// import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
+import { MoviesComponent } from './movies/movies.component';
+import { MovieComponent } from './movies/movie/movie.component';
+import { MovieListComponent } from './movies/movie-list/movie-list.component';
+import { CardComponent } from './card/card.component';
+import { ChipComponent } from './chip/chip.component';
+import { FilterComponent } from './filter/filter.component';
+import {CategoryService} from './services/category.service';
+import { MovieDetailsComponent } from './movie-details/movie-details.component';
 
 @NgModule({
     declarations: [
@@ -64,7 +66,14 @@ import { environment } from '../environments/environment';
         VerifyEmailComponent,
         LoginComponent,
         HomeComponent,
-        ForgotPasswordComponent
+        ForgotPasswordComponent,
+        MoviesComponent,
+        MovieComponent,
+        MovieListComponent,
+        CardComponent,
+        ChipComponent,
+        FilterComponent,
+        MovieDetailsComponent,
     ],
     imports: [
         BrowserModule,
@@ -73,7 +82,7 @@ import { environment } from '../environments/environment';
 
         AngularFireModule.initializeApp(environment.firebase),  // imports firebase/app needed for everything
         AngularFirestoreModule,                                 // imports firebase/firestore, only needed for database features
-        // AngularFireStorageModule,                               // imports firebase/storage only needed for storage features
+        AngularFireStorageModule,                               // imports firebase/storage only needed for storage features
         AngularFireDatabaseModule,
 
         MatAutocompleteModule,
@@ -115,7 +124,7 @@ import { environment } from '../environments/environment';
         ReactiveFormsModule,
         HttpClientModule,
     ],
-    providers: [],
+    providers: [CategoryService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
