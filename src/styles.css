@@ -1,4 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background: #E5E5E5;
+}
+
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (min-width: 1250px) {
+
+    .cards-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    app-card {
+        width: 33.33%;
+    }
+}
+
+@media screen and (min-width: 1700px) {
+    app-card {
+        width: 25%;
+    }
+}
+
+@media screen and (min-width: 2250px) {
+    app-card {
+        width: 20%;
+    }
+}
