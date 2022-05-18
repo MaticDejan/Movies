@@ -1,33 +1,29 @@
-<section>
-    <button mat-raised-button color="primary" routerLink="/login">
-        <mat-icon>login</mat-icon>
-        <span>Login</span>
-    </button>
-    <button mat-raised-button color="primary" (click)="logout()">
-        <mat-icon>logout</mat-icon>
-        <span>Log out</span>
-    </button>
-    <button mat-raised-button color="primary" routerLink="/signup">
-        <mat-icon>person_add</mat-icon>
-        <span>Sign up</span>
-    </button>
-    <button mat-raised-button color="primary" routerLink="/forgot-password">
-        <mat-icon>help_outline</mat-icon>
-        <span>Forgot password</span>
-    </button>
-    <button mat-raised-button color="primary" routerLink="/verify-email">
-        <mat-icon>help_outline</mat-icon>
-        <span>Resend email verification</span>
-    </button>
-</section>
+<ng-container *ngIf="this.authService.userLoggedIn === false">
+    <section>
+        <button mat-raised-button color="primary" routerLink="/login">
+            <mat-icon>login</mat-icon>
+            <span>Login</span>
+        </button>
+        <button mat-raised-button color="primary" routerLink="/signup">
+            <mat-icon>person_add</mat-icon>
+            <span>Sign up</span>
+        </button>
+        <button mat-raised-button color="primary" routerLink="/forgot-password">
+            <mat-icon>help_outline</mat-icon>
+            <span>Forgot password</span>
+        </button>
 
-<br>
+    </section>
 
-<mat-card *ngIf="(afAuth.user | async)">
-    <mat-icon>check_circle</mat-icon>
-    <span>User is logged in</span>
-</mat-card>
-<mat-card *ngIf="!(afAuth.user | async)">
-    <mat-icon>do_not_disturb</mat-icon>
-    <span>User is not logged in</span>
-</mat-card>
+
+    <br>
+
+    <mat-card *ngIf="(afAuth.user | async)">
+        <mat-icon>check_circle</mat-icon>
+        <span>User is logged in</span>
+    </mat-card>
+    <mat-card *ngIf="!(afAuth.user | async)">
+        <mat-icon>do_not_disturb</mat-icon>
+        <span>User is not logged in</span>
+    </mat-card>
+</ng-container>
