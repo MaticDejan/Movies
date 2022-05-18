@@ -1,5 +1,7 @@
 {
+
   "name": "Movie-Review-App ",
+
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

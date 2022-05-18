@@ -56,6 +56,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 // import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
     declarations: [
@@ -64,7 +65,8 @@ import { environment } from '../environments/environment';
         VerifyEmailComponent,
         LoginComponent,
         HomeComponent,
-        ForgotPasswordComponent
+        ForgotPasswordComponent,
+        NavbarComponent
     ],
     imports: [
         BrowserModule,
