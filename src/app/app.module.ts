@@ -58,6 +58,8 @@ import { ChipComponent } from './chip/chip.component';
 import { FilterComponent } from './filter/filter.component';
 import {CategoryService} from './services/category.service';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
+import { NavbarComponent } from './navbar/navbar.component';
+
 
 @NgModule({
     declarations: [
@@ -67,6 +69,7 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
         LoginComponent,
         HomeComponent,
         ForgotPasswordComponent,
+
         MoviesComponent,
         MovieComponent,
         MovieListComponent,
@@ -74,6 +77,9 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
         ChipComponent,
         FilterComponent,
         MovieDetailsComponent,
+
+        NavbarComponent
+
     ],
     imports: [
         BrowserModule,
