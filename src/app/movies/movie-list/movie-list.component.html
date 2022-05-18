@@ -1,0 +1,8 @@
+<main>
+    <filter (selectedFilter)="filterEvents($event)" [categories]="categoryNames"></filter>
+    <div class="cards-container">
+        <ng-container *ngFor="let movie of filteredMovies">
+            <app-card [routerLink]="['/movie',movie.title]" [image]="movie.imageUrl" [title]="movie.title" [category]="movie.category" [colorCode]="categoryService.getColor(movie)"></app-card>
+        </ng-container>
+    </div>
+</main>
