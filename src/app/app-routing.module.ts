@@ -11,6 +11,7 @@ import {MoviesComponent} from './movies/movies.component';
 import {MovieComponent} from './movies/movie/movie.component';
 import {MovieListComponent} from './movies/movie-list/movie-list.component';
 import {MovieDetailsComponent} from './movie-details/movie-details.component';
+import {MovieUpdateDeleteComponent} from './movies/movie-update-delete/movie-update-delete.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -21,7 +22,8 @@ const routes: Routes = [
     { path: 'home', component: HomeComponent },
     {path: 'movie', component: MoviesComponent, canActivate: [AuthGuard], children: [
             {path: 'upload', component: MovieComponent, canActivate: [AuthGuard]},
-            {path: 'list', component: MovieListComponent, canActivate: [AuthGuard]}
+            {path: 'list', component: MovieListComponent, canActivate: [AuthGuard]},
+            {path: 'updateOrDelete', component: MovieUpdateDeleteComponent, canActivate: [AuthGuard]}
         ]},
     {path: 'movie/:title', component: MovieDetailsComponent, canActivate: [AuthGuard]},
     { path: '**', component: HomeComponent }
