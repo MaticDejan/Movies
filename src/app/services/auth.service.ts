@@ -11,7 +11,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class AuthService {
 
     userLoggedIn: boolean;      // other components can check on this variable for the login status of the user
-
+    admin: boolean;
     constructor(private router: Router, private afAuth: AngularFireAuth, private afs: AngularFirestore) {
         this.userLoggedIn = false;
 
