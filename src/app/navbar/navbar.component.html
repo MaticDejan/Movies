@@ -5,8 +5,10 @@
         <a mat-button routerLink="movie/list">Home</a>
         <a mat-button>My movies</a>
         <a mat-button>Feedback</a>
-        <a mat-button>Update</a>
-        <a mat-button>Read feedback</a>
+        <ng-container *ngIf="this.authService.admin === true">
+            <a mat-button>Update</a>
+            <a mat-button>Read feedback</a>
+        </ng-container>
         <a mat-raised-button color="accent" (click)="logout()" routerLink="home">Log out</a>
     </mat-toolbar>
 </ng-container>

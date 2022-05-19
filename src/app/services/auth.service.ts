@@ -11,12 +11,14 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class AuthService {
 
     userLoggedIn: boolean;      // other components can check on this variable for the login status of the user
-
+    admin: boolean;
     constructor(private router: Router, private afAuth: AngularFireAuth, private afs: AngularFirestore) {
         this.userLoggedIn = false;
 
         this.afAuth.onAuthStateChanged((user) => {              // set up a subscription to always know the login status of the user
             if (user) {
+                if((user.email.toLocaleLowerCase() === "dejan_andrei45@yahoo.com" ) || ( user.email.toLocaleLowerCase() === "edy.lata2001@gmail.com") )
+                    this.admin = true;
                 this.userLoggedIn = true;
             } else {
                 this.userLoggedIn = false;
@@ -25,6 +27,8 @@ export class AuthService {
     }
 
     loginUser(email: string, password: string): Promise<any> {
+        if((email.toLocaleLowerCase() === "dejan_andrei45@yahoo.com" ) || ( email.toLocaleLowerCase() === "edy.lata2001@gmail.com") )
+            this.admin = true;
         return this.afAuth.signInWithEmailAndPassword(email, password)
             .then(() => {
                 console.log('Auth Service: loginUser: success');
@@ -43,14 +47,12 @@ export class AuthService {
         return this.afAuth.createUserWithEmailAndPassword(user.email, user.password)
             .then((result) => {
                 let emailLower = user.email.toLowerCase();
-
                 this.afs.doc('/users/' + emailLower)                        // on a successful signup, create a document in 'users' collection with the new user's info
                     .set({
-                        accountType: 'endUser',
+                        accountType: 'User',
                         displayName: user.displayName,
-                        displayName_lower: user.displayName.toLowerCase(),
                         email: user.email,
-                        email_lower: emailLower
+                        admin: false
                     });
 
                     result.user.sendEmailVerification();                    // immediately send the user a verification email

@@ -22,7 +22,7 @@ export class SignupComponent implements OnInit {
 
     ngOnInit(): void {
         if (this.authService.userLoggedIn) {                       // if the user's logged in, navigate them to the dashboard (NOTE: don't use afAuth.currentUser -- it's never null)
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['movie/list']);
         }
 
         this.signupForm = new FormGroup({
@@ -39,7 +39,7 @@ export class SignupComponent implements OnInit {
         this.isProgressVisible = true;
         this.authService.signupUser(this.signupForm.value).then((result) => {
             if (result == null)                                 // null is success, false means there was an error
-                this.router.navigate(['/dashboard']);
+                this.router.navigate(['movie/list']);
             else if (result.isValid == false)
                 this.firebaseErrorMessage = result.message;
 
