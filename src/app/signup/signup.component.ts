@@ -21,7 +21,10 @@ export class SignupComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        if (this.authService.userLoggedIn) {                       // if the user's logged in, navigate them to the dashboard (NOTE: don't use afAuth.currentUser -- it's never null)
+
+        if (this.authService.userLoggedIn) {
+            if((this.signupForm.value.email.toLocaleLowerCase() === "dejan_andrei45@yahoo.com" ) || ( this.signupForm.value.email.toLocaleLowerCase() === "edy.lata2001@gmail.com") )
+                this.authService.admin = true; // if the user's logged in, navigate them to the dashboard (NOTE: don't use afAuth.currentUser -- it's never null)
             this.router.navigate(['movie/list']);
         }
 
@@ -38,6 +41,8 @@ export class SignupComponent implements OnInit {
 
         this.isProgressVisible = true;
         this.authService.signupUser(this.signupForm.value).then((result) => {
+            if((this.signupForm.value.email.toLocaleLowerCase() === "dejan_andrei45@yahoo.com" ) || ( this.signupForm.value.email.toLocaleLowerCase() === "edy.lata2001@gmail.com") )
+                this.authService.admin = true;
             if (result == null)                                 // null is success, false means there was an error
                 this.router.navigate(['movie/list']);
             else if (result.isValid == false)
