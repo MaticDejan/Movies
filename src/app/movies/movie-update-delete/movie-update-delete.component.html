@@ -1,0 +1,14 @@
+<main>
+    <ng-container *ngFor="let movie of movieList">
+        <div class="movie-container">
+            {{movie.title}}
+            <div>
+                <a class="btn btn-success button-space">Update</a>
+                <a (click)="deleteMovie(movie)" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </ng-container>
+    <div class="form-group col-md-6">
+        <a routerLink="/movie/list" class="btn btn-primary">Go to Movies</a>
+    </div>
+</main>

@@ -59,6 +59,7 @@ import { FilterComponent } from './filter/filter.component';
 import {CategoryService} from './services/category.service';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { MovieUpdateDeleteComponent } from './movies/movie-update-delete/movie-update-delete.component';
 
 
 @NgModule({
@@ -78,7 +79,9 @@ import { NavbarComponent } from './navbar/navbar.component';
         FilterComponent,
         MovieDetailsComponent,
 
-        NavbarComponent
+        NavbarComponent,
+
+        MovieUpdateDeleteComponent
 
     ],
     imports: [
