@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { SignupComponent } from './signup/signup.component';
-import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { LoginComponent } from './login/login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AuthGuard } from './services/auth.guard';
@@ -14,11 +13,10 @@ import {MovieDetailsComponent} from './movie-details/movie-details.component';
 import {MovieUpdateDeleteComponent} from './movies/movie-update-delete/movie-update-delete.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: '', redirectTo: 'movie/list', pathMatch: 'full' },
     { path: 'forgot-password', component: ForgotPasswordComponent },
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
-    { path: 'verify-email', component: VerifyEmailComponent },
     { path: 'home', component: HomeComponent },
     {path: 'movie', component: MoviesComponent, canActivate: [AuthGuard], children: [
             {path: 'upload', component: MovieComponent, canActivate: [AuthGuard]},

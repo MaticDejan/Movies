@@ -32,7 +32,7 @@ export class AuthService {
         return this.afAuth.signInWithEmailAndPassword(email, password)
             .then(() => {
                 console.log('Auth Service: loginUser: success');
-                // this.router.navigate(['/dashboard']);
+
             })
             .catch(error => {
                 console.log('Auth Service: login error...');
