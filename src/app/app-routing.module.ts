@@ -19,11 +19,11 @@ const routes: Routes = [
     { path: 'signup', component: SignupComponent },
     { path: 'verify-email', component: VerifyEmailComponent },
     { path: 'home', component: HomeComponent },
-    {path: 'movie', component: MoviesComponent, children: [
-            {path: 'upload', component: MovieComponent},
-            {path: 'list', component: MovieListComponent}
+    {path: 'movie', component: MoviesComponent, canActivate: [AuthGuard], children: [
+            {path: 'upload', component: MovieComponent, canActivate: [AuthGuard]},
+            {path: 'list', component: MovieListComponent, canActivate: [AuthGuard]}
         ]},
-    {path: 'movie/:title', component: MovieDetailsComponent},
+    {path: 'movie/:title', component: MovieDetailsComponent, canActivate: [AuthGuard]},
     { path: '**', component: HomeComponent }
     // catch-all in case no other path matched
 ];
