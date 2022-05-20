@@ -59,6 +59,8 @@ import {CategoryService} from './services/category.service';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MovieUpdateDeleteComponent } from './movies/movie-update-delete/movie-update-delete.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
+import { DialogComponent } from './dialog/dialog.component';
 
 
 @NgModule({
@@ -79,7 +81,11 @@ import { MovieUpdateDeleteComponent } from './movies/movie-update-delete/movie-u
 
         NavbarComponent,
 
-        MovieUpdateDeleteComponent
+        MovieUpdateDeleteComponent,
+
+        AdminPageComponent,
+
+        DialogComponent
 
     ],
     imports: [
