@@ -17,19 +17,14 @@ export class MovieDetailsComponent implements OnInit {
 
     ngOnInit(): void {
         this.name = this.router.snapshot.params['title'];
-        this.service.getMovieDetailList();
-        this.service.movieDetailList.snapshotChanges().subscribe(
-            list => {
-                this.movieList = list.map(item => {
-                    return item.payload.val();
-                });
-                this.movieList.forEach(movie => {
-                    if (movie.title === this.name) {
-                        this.movie = movie;
-                    }
-                });
-            }
-        );
+        this.service.getMovies().subscribe(movies => {
+            this.movieList = movies;
+            this.movieList.forEach(movie => {
+                if (movie.title === this.name) {
+                    this.movie = movie;
+                }
+            });
+        });
     }
 
     undifindHandle(movie: any) {

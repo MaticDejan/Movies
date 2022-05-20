@@ -17,22 +17,13 @@ export class MovieUpdateDeleteComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.service.movieDetailList.snapshotChanges().subscribe(
-            list => {
-                this.movieList = list.map(item => {
-                    return item.payload.val();
-                });
-            }
-        );
+        this.service.getMovies().subscribe(movies => this.movieList = movies );
     }
 
     deleteMovie(movie: any) {
         if (confirm('Are you sure you want to delete ' + movie.title + '?')) {
             this.service.deleteMovie(movie);
         }
-
-        //this.newMovies =  this.movieList.filter(m => m.title !== name);
-        //this.movieList = this.newMovies;
     }
 
 }
