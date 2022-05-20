@@ -1,12 +1,30 @@
-.movie-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    background-color: white;
-    margin-bottom: 15px;
+th {
+    background-color: #0091EA;
+    margin: 20px;
+    color: white;
+    width: 100px;
 }
 
-.button-space {
-    margin-right: 15px;
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.space {
+    margin: 30px;
+}
+
+.to-all {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
 }
