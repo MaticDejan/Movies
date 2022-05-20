@@ -4,7 +4,7 @@
         <div class="spacer"></div>
         <a mat-button routerLink="movie/list">Home</a>
         <a mat-button>My movies</a>
-        <a mat-button>Feedback</a>
+        <a mat-button routerLink="feedback">Feedback</a>
         <ng-container *ngIf="this.authService.admin === true">
             <a mat-button routerLink="admin">Update</a>
             <a mat-button>Read feedback</a>

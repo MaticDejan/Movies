@@ -61,7 +61,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MovieUpdateDeleteComponent } from './movies/movie-update-delete/movie-update-delete.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { DialogComponent } from './dialog/dialog.component';
-
+import {FeedbackComponent} from './feedback/feedback.component';
 
 @NgModule({
     declarations: [
@@ -85,7 +85,8 @@ import { DialogComponent } from './dialog/dialog.component';
 
         AdminPageComponent,
 
-        DialogComponent
+        DialogComponent,
+        FeedbackComponent
 
     ],
     imports: [
