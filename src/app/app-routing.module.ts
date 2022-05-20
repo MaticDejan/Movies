@@ -11,6 +11,7 @@ import {MovieComponent} from './movies/movie/movie.component';
 import {MovieListComponent} from './movies/movie-list/movie-list.component';
 import {MovieDetailsComponent} from './movie-details/movie-details.component';
 import {MovieUpdateDeleteComponent} from './movies/movie-update-delete/movie-update-delete.component';
+import {AdminPageComponent} from './admin-page/admin-page.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'movie/list', pathMatch: 'full' },
@@ -24,6 +25,7 @@ const routes: Routes = [
             {path: 'updateOrDelete', component: MovieUpdateDeleteComponent, canActivate: [AuthGuard]}
         ]},
     {path: 'movie/:title', component: MovieDetailsComponent, canActivate: [AuthGuard]},
+    {path: 'admin', component: AdminPageComponent, canActivate: [AuthGuard]},
     { path: '**', component: HomeComponent }
     // catch-all in case no other path matched
 ];
