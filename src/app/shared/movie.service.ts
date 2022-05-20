@@ -35,4 +35,16 @@ export class MovieService implements OnInit {
     deleteMovie(movie) {
         this.firebase.object('/movieDetails/' + movie.key).remove();
     }
+
+    updateMovie(movie, formValue) {
+        this.firebase.object('/movieDetails/' + movie.key)
+            .set({
+                title: formValue.title,
+                category: formValue.category,
+                description: formValue.description,
+                duration: formValue.duration,
+                imageUrl: formValue.imageUrl,
+                trailerUrl: formValue.trailerUrl,
+        })
+    }
 }

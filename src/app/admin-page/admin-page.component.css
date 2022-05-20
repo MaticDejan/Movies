@@ -1,0 +1,13 @@
+.button-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 70px 300px;
+}
+
+.container {
+    background-image: url("src/assets/images/admin.jpg");
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
