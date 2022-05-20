@@ -1,20 +1,31 @@
-import {Injectable} from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import {AngularFireDatabase, AngularFireList} from '@angular/fire/database';
-import {AngularFirestoreDocument} from '@angular/fire/firestore';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
 })
-export class MovieService {
+export class MovieService implements OnInit {
 
     movieDetailList: AngularFireList<any>;
-    movieDoc: AngularFirestoreDocument<any>;
+    movies: Observable<any[]>;
+
 
     constructor(private firebase: AngularFireDatabase) {
+        this.movieDetailList = firebase.list('movieDetails');
+        this.movies = this.movieDetailList.snapshotChanges().pipe(
+            map(res => res.map(c => ({ key: c.payload.key, ...c.payload.val()
+                }))
+
+            ));
     }
 
-    getMovieDetailList() {
-        this.movieDetailList = this.firebase.list('movieDetails');
+    ngOnInit() {
+    }
+
+    getMovies() {
+        return this.movies;
     }
 
     insertMovieDetails(movieDetails) {
@@ -22,7 +33,6 @@ export class MovieService {
     }
 
     deleteMovie(movie) {
-        console.log(movie.title);
-        this.movieDetailList.remove(movie.title);
+        this.firebase.object('/movieDetails/' + movie.key).remove();
     }
 }
