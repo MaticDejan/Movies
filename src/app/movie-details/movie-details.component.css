@@ -16,3 +16,11 @@ img {
 .space {
     margin-left: 50px;
 }
+
+.image-space {
+    width: 50%;
+}
+
+.text-space {
+    width: 50%;
+}
