@@ -12,14 +12,19 @@ export class AuthService {
 
     userLoggedIn: boolean;      // other components can check on this variable for the login status of the user
     admin: boolean;
+    name: string;
+    email: string;
+    banAccount: boolean;
 
     constructor(private router: Router, private afAuth: AngularFireAuth, private afs: AngularFirestore) {
         this.userLoggedIn = false;
 
         this.afAuth.onAuthStateChanged((user) => {              // set up a subscription to always know the login status of the user
             if (user) {
-                if ((user.email.toLocaleLowerCase() === "dejan_andrei45@yahoo.com") || (user.email.toLocaleLowerCase() === "edy.lata2001@gmail.com"))
+                if ((user.email.toLocaleLowerCase() === 'dejan_andrei45@yahoo.com') || (user.email.toLocaleLowerCase() === 'edy.lata2001@gmail.com')) {
                     this.admin = true;
+                }
+                this.name = user.displayName;
                 this.userLoggedIn = true;
             } else {
                 this.userLoggedIn = false;
@@ -28,8 +33,10 @@ export class AuthService {
     }
 
     loginUser(email: string, password: string): Promise<any> {
-        if ((email.toLocaleLowerCase() === "dejan_andrei45@yahoo.com") || (email.toLocaleLowerCase() === "edy.lata2001@gmail.com"))
+        if ((email.toLocaleLowerCase() === 'dejan_andrei45@yahoo.com') || (email.toLocaleLowerCase() === 'edy.lata2001@gmail.com')) {
             this.admin = true;
+        }
+
         return this.afAuth.signInWithEmailAndPassword(email, password)
             .then(() => {
                 console.log('Auth Service: loginUser: success');
@@ -39,30 +46,40 @@ export class AuthService {
                 console.log('Auth Service: login error...');
                 console.log('error code', error.code);
                 console.log('error', error);
-                if (error.code)
+                if (error.code) {
                     return {isValid: false, message: error.message};
+                }
             });
     }
 
     signupUser(user: any): Promise<any> {
         return this.afAuth.createUserWithEmailAndPassword(user.email, user.password)
             .then((result) => {
-                let emailLower = user.email.toLowerCase();
+                if ((user.email.toLocaleLowerCase() === 'dejan_andrei45@yahoo.com') || (user.email.toLocaleLowerCase() === 'edy.lata2001@gmail.com')) {
+                    this.admin = true;
+                }
+                const emailLower = user.email.toLowerCase();
                 this.afs.doc('/users/' + emailLower)                        // on a successful signup, create a document in 'users' collection with the new user's info
                     .set({
                         accountType: 'User',
                         displayName: user.displayName,
+                        name: user.displayName,
                         email: user.email,
                         admin: false,
 
                     });
-
-                result.user.sendEmailVerification();                    // immediately send the user a verification email
+                if ((user.email.toLocaleLowerCase() === 'dejan_andrei45@yahoo.com') || (user.email.toLocaleLowerCase() === 'edy.lata2001@gmail.com')) {
+                    this.admin = true;
+                }
+                this.name = user.DisplayName;
+                // result.user.sendEmailVerification();
+                // immediately send the user a verification email
             })
             .catch(error => {
                 console.log('Auth Service: signup error', error);
-                if (error.code)
+                if (error.code) {
                     return {isValid: false, message: error.message};
+                }
             });
     }
 
@@ -75,9 +92,10 @@ export class AuthService {
             .catch(error => {
                 console.log('Auth Service: reset password error...');
                 console.log(error.code);
-                console.log(error)
-                if (error.code)
+                console.log(error);
+                if (error.code) {
                     return error;
+                }
             });
     }
 
@@ -90,8 +108,9 @@ export class AuthService {
                 console.log('Auth Service: sendVerificationEmail error...');
                 console.log('error code', error.code);
                 console.log('error', error);
-                if (error.code)
+                if (error.code) {
                     return error;
+                }
             });
     }
 
@@ -104,22 +123,23 @@ export class AuthService {
                 console.log('Auth Service: logout error...');
                 console.log('error code', error.code);
                 console.log('error', error);
-                if (error.code)
+                if (error.code) {
                     return error;
+                }
             });
     }
 
     setUserInfo(payload: object) {
         console.log('Auth Service: saving user info...');
         this.afs.collection('users')
-            .add(payload).then(function (res) {
-            console.log("Auth Service: setUserInfo response...")
+            .add(payload).then(function(res) {
+            console.log('Auth Service: setUserInfo response...');
             console.log(res);
-        })
+        });
     }
 
     getCurrentUser() {
-        return this.afAuth.currentUser;                                 // returns user object for logged-in users, otherwise returns null 
+        return this.afAuth.currentUser;                                 // returns user object for logged-in users, otherwise returns null
     }
 
 
