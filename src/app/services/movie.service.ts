@@ -7,17 +7,14 @@ import {map} from 'rxjs/operators';
     providedIn: 'root'
 })
 export class MovieService implements OnInit {
-
     movieDetailList: AngularFireList<any>;
     movies: Observable<any[]>;
-
 
     constructor(private firebase: AngularFireDatabase) {
         this.movieDetailList = firebase.list('movieDetails');
         this.movies = this.movieDetailList.snapshotChanges().pipe(
             map(res => res.map(c => ({ key: c.payload.key, ...c.payload.val()
                 }))
-
             ));
     }
 
