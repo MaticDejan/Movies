@@ -7,7 +7,7 @@
         <a mat-button routerLink="feedback">Feedback</a>
         <ng-container *ngIf="this.authService.admin === true">
             <a mat-button routerLink="admin">Update</a>
-            <a mat-button>Read feedback</a>
+            <a mat-button href="https://console.firebase.google.com/u/1/project/movie-review-app-7fa54/storage/movie-review-app-7fa54.appspot.com/files">Read feedback</a>
         </ng-container>
         <a mat-raised-button color="accent" (click)="logout()" routerLink="home">Log out</a>
     </mat-toolbar>

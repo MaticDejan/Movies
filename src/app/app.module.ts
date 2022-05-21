@@ -55,13 +55,13 @@ import { MovieListComponent } from './movies/movie-list/movie-list.component';
 import { CardComponent } from './card/card.component';
 import { ChipComponent } from './chip/chip.component';
 import { FilterComponent } from './filter/filter.component';
-import {CategoryService} from './services/category.service';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MovieUpdateDeleteComponent } from './movies/movie-update-delete/movie-update-delete.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { DialogComponent } from './dialog/dialog.component';
 import {FeedbackComponent} from './feedback/feedback.component';
+import {SafePipe} from './safe.pipe';
 
 @NgModule({
     declarations: [
@@ -86,8 +86,8 @@ import {FeedbackComponent} from './feedback/feedback.component';
         AdminPageComponent,
 
         DialogComponent,
-        FeedbackComponent
-
+        FeedbackComponent,
+        SafePipe
     ],
     imports: [
         BrowserModule,
@@ -138,7 +138,7 @@ import {FeedbackComponent} from './feedback/feedback.component';
         ReactiveFormsModule,
         HttpClientModule,
     ],
-    providers: [CategoryService],
+    providers: [],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

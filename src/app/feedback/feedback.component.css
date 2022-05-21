@@ -1,0 +1,13 @@
+.space {
+    margin: 10px
+}
+
+.full {
+    width: 100%;
+}
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+}
