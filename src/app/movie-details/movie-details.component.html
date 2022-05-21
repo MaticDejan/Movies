@@ -2,12 +2,15 @@
     <div class="details-container">
         <h1>{{movie.title}}</h1>
         <div class="body-container">
-            <img class="image-space" src="{{movie.imageUrl}}">
+            <div class="image-space">
+                <img src="{{movie.imageUrl}}" >
+            </div>
             <div class="space text-space">
                 <h2>Description:</h2>
                 <p>{{movie.description}}</p>
                 <h2>Movie Trailer:</h2>
-                <a>{{movie.trailer}}</a>
+                <iframe width="420" height="345" [src]="movie.trailerUrl.replace('watch?v=', 'embed/') | safe" allowfullscreen>
+                </iframe>
             </div>
         </div>
     </div>
