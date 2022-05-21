@@ -10,7 +10,6 @@ import {CategoryService} from '../../services/category.service';
 export class MovieListComponent implements OnInit {
 
     movieList: any[];
-    rowIndexArray: any[];
     filteredMovies: any[];
     categoryNames: string[] = [];
 
@@ -22,7 +21,6 @@ export class MovieListComponent implements OnInit {
             this.movieList = movies;
             this.filteredMovies = movies;
             this.categoryNames = this.categoryService.getCategories(this.movieList).map(cat => cat.name);
-            this.rowIndexArray = Array.from(Array(Math.ceil((this.movieList.length + 1) / 3)).keys());
         });
     }
 
