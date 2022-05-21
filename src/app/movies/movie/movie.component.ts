@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {finalize} from 'rxjs/operators';
-import {MovieService} from '../../shared/movie.service';
+import {MovieService} from '../../services/movie.service';
 
 @Component({
   selector: 'app-movie',

@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MovieService} from '../../shared/movie.service';
+import {MovieService} from '../../services/movie.service';
 import {MatDialog} from '@angular/material/dialog';
 import {DialogComponent} from '../../dialog/dialog.component';
 import {MatTable} from '@angular/material/table';
