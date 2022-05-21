@@ -138,7 +138,7 @@ import {FeedbackComponent} from './feedback/feedback.component';
         ReactiveFormsModule,
         HttpClientModule,
     ],
-    providers: [CategoryService],
+    providers: [],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
