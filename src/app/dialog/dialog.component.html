@@ -1,33 +1,65 @@
 <h1 mat-dialog-title>Row Action :: <strong>{{action}}</strong></h1>
-<div mat-dialog-content>
-    <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
-        <input placeholder="{{action}} Title" matInput [(ngModel)]="local_data.title">
-    </mat-form-field>
-    <mat-form-field *ngIf="action != 'Delete'">
-        <input placeholder="{{action}} Duration" matInput [(ngModel)]="local_data.duration">
-    </mat-form-field>
-    <mat-form-field *ngIf="action != 'Delete'">
-        <textarea placeholder="{{action}} Description" matInput [(ngModel)]="local_data.description"></textarea>
-    </mat-form-field>
-    <mat-form-field *ngIf="action != 'Delete'">
-        <input placeholder="{{action}} ImageUrl" matInput [(ngModel)]="local_data.imageUrl">
-    </mat-form-field>
-    <mat-form-field *ngIf="action != 'Delete'">
-        <input placeholder="{{action}} TrailerUrl" matInput [(ngModel)]="local_data.trailerUrl">
-    </mat-form-field>
-    <mat-form-field *ngIf="action != 'Delete'">
-        <select [(ngModel)]="local_data.category">
-            <option value="Crime">Crime</option>
-            <option value="Action">Action</option>
-            <option value="Drama">Drama</option>
-            <option value="Horror">Horror</option>
-        </select>
-    </mat-form-field>
-    <ng-template #elseTemplate>
-        Sure to delete <b>{{local_data.title}}</b>?
-    </ng-template>
-</div>
-<div mat-dialog-actions>
-    <button mat-button (click)="doAction()" mat-flat-button color="warn">{{action}}</button>
-    <button mat-button (click)="closeDialog()">Cancel</button>
+<div class="container">
+    <div class="card" style="width: 25rem">
+        <div class="card-body">
+            <form [formGroup]="formTemplate">
+                <ng-container *ngIf="action != 'Delete'; else elseTemplate">
+                    <div class="text-center">
+                        <img [src]="imgSrc" (click)="fileUploader.click()">
+                    </div>
+                    <div class="form-group space">
+                        <label>Select file to upload</label>
+                        <input placeholder="{{action}} Title" [(ngModel)]="local_data.imageUrl" type="file"
+                               accept="image/*" class="form-control" #fileUploader formControlName="imageUrl"
+                               (change)="showPreview($event)">
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="action != 'Delete'">
+                    <div class="form-group space">
+                        <input [(ngModel)]="local_data.title" class="form-control" formControlName="title"
+                               placeholder="Title">
+
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="action != 'Delete'">
+                    <div class="form-group space">
+                        <select [(ngModel)]="local_data.category" formControlName="category" class="form-control">
+                            <option value="Crime">Crime</option>
+                            <option value="Action">Action</option>
+                            <option value="Drama">Drama</option>
+                            <option value="Horror">Horror</option>
+                        </select>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="action != 'Delete'">
+                    <div class="form-group space">
+                        <input [(ngModel)]="local_data.duration" class="form-control" formControlName="duration"
+                               placeholder="Duration">
+
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="action != 'Delete'">
+                    <div class="form-group space">
+                        <textarea [(ngModel)]="local_data.description" class="form-control"
+                                  formControlName="description" placeholder="Description"></textarea>
+
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="action != 'Delete'">
+                    <div class="form-group space">
+                        <input [(ngModel)]="local_data.trailerUrl" class="form-control" formControlName="trailerUrl"
+                               placeholder="Trailer">
+                    </div>
+                </ng-container>
+                <ng-template #elseTemplate>
+                    Sure to delete <b>{{local_data.title}}</b>?
+                </ng-template>
+                <div mat-dialog-actions class="space">
+                    <button type="submit" mat-button (click)="doAction(formTemplate.value)" mat-flat-button
+                            color="warn">{{action}}</button>
+                    <button mat-button (click)="closeDialog()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
