@@ -2,8 +2,8 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {FormControl, FormGroup} from '@angular/forms';
 import {AngularFireStorage} from '@angular/fire/storage';
-import {MovieService} from '../services/movie.service';
 import {finalize} from 'rxjs/operators';
+import {MovieService} from '../services/movie.service';
 
 @Component({
     selector: 'app-dialog',
@@ -30,6 +30,8 @@ export class DialogComponent implements OnInit {
                 @Inject(MAT_DIALOG_DATA) public data: any) {
         this.local_data = {...data};
         this.action = this.local_data.action;
+        this.imgSrc = this.local_data.imageUrl;
+        this.selectedImage = this.local_data.imageUrl;
     }
 
     showPreview(event: any) {
@@ -41,7 +43,7 @@ export class DialogComponent implements OnInit {
         }
         else {
             this.imgSrc = this.local_data.imageUrl;
-            this.selectedImage = null;
+            this.selectedImage = this.local_data.imageUrl;
         }
     }
 
@@ -54,9 +56,8 @@ export class DialogComponent implements OnInit {
                 finalize(() => {
                     fileRef.getDownloadURL().subscribe((url) => {
                         formValue['imageUrl'] = url;
-                        this.local_data.imageUrl = url;
-                        this.resetForm();
-                    })
+                        this.service.insertMovieDetails(formValue);
+                    });
                 })
             ).subscribe();
         }
@@ -67,25 +68,10 @@ export class DialogComponent implements OnInit {
         return this.formTemplate['controls'];
     }
 
-    resetForm() {
-        this.formTemplate.reset();
-        this.formTemplate.setValue({
-            title: '',
-            category: 'Action',
-            description: '',
-            duration: 0,
-            imageUrl: '',
-            trailerUrl: '',
-        });
-        this.imgSrc = this.local_data.imageUrl;
-        this.selectedImage = null;
-    }
-
     closeDialog() {
         this.dialogRef.close({event: 'Cancel'});
     }
 
     ngOnInit(): void {
-        this.resetForm();
     }
 }

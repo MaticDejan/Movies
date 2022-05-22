@@ -19,16 +19,17 @@ export class MovieUpdateDeleteComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.service.getMovies().subscribe(movies => this.dataSource = movies );
+        this.service.getMovies().subscribe(movies => this.dataSource = movies);
     }
 
     deleteMovie(movie: any) {
-             this.service.deleteMovie(movie);
-     }
+        this.service.deleteMovie(movie);
+    }
 
-     updateMovie(movie: any, value: any) {
-         this.service.updateMovie(movie, value);
-     }
+    updateMovie(movie: any, value: any) {
+        this.service.updateMovie(movie, value);
+        this.service.deleteMovie(movie);
+    }
 
     openDialog(action, obj) {
         obj.action = action;
@@ -38,7 +39,7 @@ export class MovieUpdateDeleteComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-             if (result.event === 'Update') {
+            if (result.event === 'Update') {
                 this.updateRowData(result.data);
             } else if (result.event === 'Delete') {
                 this.deleteRowData(result.data);
@@ -55,6 +56,8 @@ export class MovieUpdateDeleteComponent implements OnInit {
                 value.duration = row_obj.duration;
                 value.imageUrl = row_obj.imageUrl;
                 value.trailerUrl = row_obj.trailerUrl;
+                console.log(row_obj.imageUrl);
+                console.log(value.imageUrl);
                 this.updateMovie(value, row_obj);
             }
             return true;
