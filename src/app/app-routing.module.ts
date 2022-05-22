@@ -14,13 +14,14 @@ import {MovieUpdateDeleteComponent} from './movies/movie-update-delete/movie-upd
 import {AdminPageComponent} from './admin-page/admin-page.component';
 import {FeedbackComponent} from './feedback/feedback.component';
 import {AdminGuard} from "./services/admin.guard";
+import {LogoutGuard} from "./services/logout.guard";//
 
 const routes: Routes = [
     { path: '', redirectTo: 'movie/list', pathMatch: 'full' },
-    { path: 'forgot-password', component: ForgotPasswordComponent },
-    { path: 'login', component: LoginComponent },
-    { path: 'signup', component: SignupComponent },
-    { path: 'home', component: HomeComponent },
+    { path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [LogoutGuard] },
+    { path: 'login', component: LoginComponent, canActivate: [LogoutGuard] },
+    { path: 'signup', component: SignupComponent, canActivate: [LogoutGuard] },
+    { path: 'home', component: HomeComponent, canActivate: [LogoutGuard] },
     {path: 'movie', component: MoviesComponent, canActivate: [AuthGuard], children: [
             {path: 'upload', component: MovieComponent, canActivate: [AuthGuard, AdminGuard]},
             {path: 'list', component: MovieListComponent, canActivate: [AuthGuard]},

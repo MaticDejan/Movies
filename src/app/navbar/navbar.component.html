@@ -1,4 +1,4 @@
-<div *ngIf="this.authService.userLoggedIn === true">
+<ng-container *ngIf="this.authService.userLoggedIn === true">
     <ng-container *ngIf="this.authService.admin === true; else elseTemplate">
 
         <mat-toolbar color="primary" class="mat-elevation-z8">
@@ -25,4 +25,4 @@
             <a mat-raised-button color="accent" (click)="logout()" routerLink="home">Log out</a>
         </mat-toolbar>
     </ng-template>
-</div>
+</ng-container>
