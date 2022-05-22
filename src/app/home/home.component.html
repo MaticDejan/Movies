@@ -1,5 +1,6 @@
-<ng-container *ngIf="this.authService.userLoggedIn === false">
-    <section>
+<ng-container  *ngIf="this.authService.userLoggedIn === false">
+<div class="all"><h1><b>WELCOME TO OUR MOVIE REVIEW APPLICATION</b></h1></div>
+    <section class="cards-container">
         <button mat-raised-button color="primary" routerLink="/login">
             <mat-icon>login</mat-icon>
             <span>Login</span>
@@ -26,4 +27,10 @@
         <mat-icon>do_not_disturb</mat-icon>
         <span>User is not logged in</span>
     </mat-card>
+
+    <br>
+    <br>
+    <div class="homeImg">
+
+    </div>
 </ng-container>

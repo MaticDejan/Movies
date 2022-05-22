@@ -6,6 +6,7 @@
     width: 100%;
 }
 .container{
+    background-image: url("src/assets/images/feedbackBackgroungimg.jpg");
     display: flex;
     align-items: center;
     justify-content: center;

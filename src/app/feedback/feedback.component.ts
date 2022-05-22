@@ -4,6 +4,7 @@ import {AngularFireStorage} from "@angular/fire/storage";
 import {finalize} from "rxjs/operators";
 import {AngularFireAuth} from "@angular/fire/auth";
 import {AngularFirestore} from "@angular/fire/firestore";
+import {AuthService} from "../services/auth.service";
 
 @Component({
     selector: 'app-feedback',
