@@ -1,14 +1,28 @@
-<ng-container *ngIf="this.authService.userLoggedIn === true">
-    <mat-toolbar color="primary" class="mat-elevation-z8">
-        <span><mat-icon>movie</mat-icon>Movies</span>
-        <div class="spacer"></div>
-        <a mat-button routerLink="movie/list">Home</a>
-        <a mat-button>My movies</a>
-        <a mat-button routerLink="feedback">Feedback</a>
-        <ng-container *ngIf="this.authService.admin === true">
+<div *ngIf="this.authService.userLoggedIn === true">
+    <ng-container *ngIf="this.authService.admin === true; else elseTemplate">
+
+        <mat-toolbar color="primary" class="mat-elevation-z8">
+            <span><mat-icon>movie</mat-icon>Movies</span>
+            <div class="spacer"></div>
+            <a mat-button routerLink="movie/list">Home</a>
+            <a mat-button>My movies</a>
+            <a mat-button routerLink="feedback">Feedback</a>
+
             <a mat-button routerLink="admin">Update</a>
-            <a mat-button href="https://console.firebase.google.com/u/1/project/movie-review-app-7fa54/storage/movie-review-app-7fa54.appspot.com/files">Read feedback</a>
-        </ng-container>
-        <a mat-raised-button color="accent" (click)="logout()" routerLink="home">Log out</a>
-    </mat-toolbar>
-</ng-container>
+            <a mat-button
+               href="https://console.firebase.google.com/u/1/project/movie-review-app-7fa54/storage/movie-review-app-7fa54.appspot.com/files">Read
+                feedback</a>
+            <a mat-raised-button color="accent" (click)="logout()" routerLink="home">Log out</a>
+        </mat-toolbar>
+    </ng-container>
+    <ng-template #elseTemplate>
+        <mat-toolbar color="primary" class="mat-elevation-z8">
+            <span><mat-icon>movie</mat-icon>Movies</span>
+            <div class="spacer"></div>
+            <a mat-button routerLink="movie/list">Home</a>
+            <a mat-button>My movies</a>
+            <a mat-button routerLink="feedback">Feedback</a>
+            <a mat-raised-button color="accent" (click)="logout()" routerLink="home">Log out</a>
+        </mat-toolbar>
+    </ng-template>
+</div>
