@@ -40,15 +40,14 @@ export class DialogComponent implements OnInit {
             reader.onload = (e: any) => this.imgSrc = e.target.result;
             reader.readAsDataURL(event.target.files[0]);
             this.selectedImage = event.target.files[0];
-        }
-        else {
+        } else {
             this.imgSrc = this.local_data.imageUrl;
             this.selectedImage = this.local_data.imageUrl;
         }
     }
 
     doAction(formValue) {
-        if (this.formTemplate.valid) {
+        if (formValue.title !== '') {
             var directory = `Movies`;
             var filePath = `${directory}/${formValue.category}/${this.selectedImage.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
             const fileRef = this.storage.ref(filePath);
