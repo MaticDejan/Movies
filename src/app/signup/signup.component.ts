@@ -43,6 +43,8 @@ export class SignupComponent implements OnInit {
         this.authService.signupUser(this.signupForm.value).then((result) => {
             if((this.signupForm.value.email.toLocaleLowerCase() === "dejan_andrei45@yahoo.com" ) || ( this.signupForm.value.email.toLocaleLowerCase() === "edy.lata2001@gmail.com") )
                 this.authService.admin = true;
+            else
+                this.authService.admin = false;
             this.authService.name = this.signupForm.value.displayName;
             this.authService.email = this.signupForm.value.email;
             this.authService.banAccount = false;

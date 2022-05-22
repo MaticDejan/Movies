@@ -62,6 +62,7 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
 import { DialogComponent } from './dialog/dialog.component';
 import {FeedbackComponent} from './feedback/feedback.component';
 import {SafePipe} from './safe.pipe';
+import { SearchBarComponent } from './search-bar/search-bar.component';
 
 @NgModule({
     declarations: [
@@ -87,7 +88,8 @@ import {SafePipe} from './safe.pipe';
 
         DialogComponent,
         FeedbackComponent,
-        SafePipe
+        SafePipe,
+        SearchBarComponent
     ],
     imports: [
         BrowserModule,
