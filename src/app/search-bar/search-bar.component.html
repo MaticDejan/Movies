@@ -1,4 +1,3 @@
-<div>
-    <input type="text" placeholder="Search movie" [(ngModel)]="title" >
-    <button (click)="searchMovie()" >Search</button>
+<div class="col-sm-4">
+    <input class="form-control" type="text" placeholder="Search movie" [(ngModel)]="title" (ngModelChange)='searchMovie()'>
 </div>

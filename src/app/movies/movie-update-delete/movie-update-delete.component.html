@@ -1,5 +1,6 @@
+<app-search-bar (search)="filterSearch($event)" [movies]="filteredMovies"></app-search-bar>
 <div class="container">
-    <table mat-table [dataSource]="dataSource" class="table table-bordered">
+    <table mat-table [dataSource]="filteredMovies" class="table table-bordered">
 
         <ng-container matColumnDef="title">
             <th mat-header-cell *matHeaderCellDef>
