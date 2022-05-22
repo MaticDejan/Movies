@@ -5,10 +5,12 @@
 .full {
     width: 100%;
 }
+
 .description{
     height: 300px;
 }
-.all{
+
+.all {
     text-align: center;
     background-color: #3f51b5;
     margin-left: 100px;
@@ -20,10 +22,12 @@
     justify-content: center;
     color:white;
 }
+
 .container{
     background-image: url("src/assets/images/feedbackBackgroungimg.jpg");
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 100px;
+    margin-top: 15px;
+    padding: 50px;
 }

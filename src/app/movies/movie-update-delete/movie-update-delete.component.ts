@@ -33,7 +33,7 @@ export class MovieUpdateDeleteComponent implements OnInit {
     openDialog(action, obj) {
         obj.action = action;
         const dialogRef = this.dialog.open(DialogComponent, {
-            width: '250px',
+            width: '500px',
             data: obj
         });
 
