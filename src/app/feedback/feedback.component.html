@@ -1,4 +1,8 @@
+<div class="all"><h1><b>There is our feedback form. Please complete these form and give your honest
+    opinion about our website and about your experience using these application. Also you can write
+    some suggestions about how can we improve our application. </b></h1></div>
 <div class="container">
+
     <div class="card" style="width: 25rem">
         <div class="card-body">
             <form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
@@ -12,7 +16,7 @@
                     </select>
                 </div>
                 <div class="form-group space">
-                    <textarea class="form-control" formControlName="description" placeholder="Description"></textarea>
+                    <textarea class="form-control description" formControlName="description" placeholder="Description"></textarea>
                     <div class="text-danger" *ngIf="isSubmitted && formControls.description.errors?.required">This field
                         is
                         required.
