@@ -1,5 +1,6 @@
 <main>
     <filter (selectedFilter)="filterEvents($event)" [categories]="categoryNames"></filter>
+    <app-search-bar (search)="filterSearch($event)"></app-search-bar>
     <div class="cards-container">
         <ng-container *ngFor="let movie of filteredMovies">
             <app-card [routerLink]="['/movie',movie.title]" [image]="movie.imageUrl" [title]="movie.title" [category]="movie.category" [colorCode]="categoryService.getColor(movie)"></app-card>

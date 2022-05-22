@@ -27,4 +27,8 @@ export class MovieListComponent implements OnInit {
     filterEvents(selectedFilter: string) {
         this.filteredMovies = this.movieList.filter(movie => movie.category === selectedFilter || selectedFilter === '');
     }
+    filterSearch(searchTerm: string) {
+        this.filteredMovies = this.movieList.filter(movie => movie.title.includes(searchTerm)  || searchTerm === '');
+    }
+
 }
