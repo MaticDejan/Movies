@@ -54,12 +54,13 @@
                 <ng-template #elseTemplate>
                     Sure to delete <b>{{local_data.title}}</b>?
                 </ng-template>
-                <div mat-dialog-actions class="space">
-                    <button mat-button (click)="doAction(formTemplate.value)" mat-flat-button
-                            color="warn">{{action}}</button>
-                    <button mat-button (click)="closeDialog()">Cancel</button>
-                </div>
+
             </form>
+            <div mat-dialog-actions class="space">
+            <button (click)="doAction(formTemplate.value)"  mat-button mat-flat-button
+                    color="warn">{{action}}</button>
+            <button mat-button (click)="closeDialog()">Cancel</button>
+        </div>
         </div>
     </div>
 </div>
