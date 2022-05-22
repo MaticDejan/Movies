@@ -1,11 +1,13 @@
-Signup
+<div class="mat-app-background">
 <br>
 <br>
+    <div class="all all1">
 <button mat-raised-button color="primary" routerLink="/home">
     <mat-icon>home</mat-icon>
     <span>Home</span>
 </button>
-
+</div>
+<div class="all">
 <mat-card class="form-card">
     <form [formGroup]="signupForm" (ngSubmit)="signup()">
         <p>
@@ -33,7 +35,9 @@ Signup
         <button mat-raised-button color="primary">Signup</button>
     </form>
 </mat-card>
+</div>
 
 <div class="progressIndicator" [style.display]="isProgressVisible ? 'inline' : 'none' ">
     <mat-progress-spinner class=" example-margin" color="primary" mode="indeterminate"></mat-progress-spinner>
+</div>
 </div>

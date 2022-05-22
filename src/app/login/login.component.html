@@ -1,11 +1,13 @@
-Login
+<div class="mat-app-background">
 <br>
 <br>
-<button mat-raised-button color="primary" routerLink="/home">
+<div class="all all1">
+<button mat-raised-button  color="primary" routerLink="/home">
     <mat-icon>home</mat-icon>
     <span>Home</span>
 </button>
-
+</div>
+<div class="all ">
 <mat-card>
     <form [formGroup]="loginForm" (ngSubmit)="loginUser()" type="">
         <p>
@@ -27,7 +29,8 @@ Login
         <button mat-raised-button color="primary" >Login</button>
     </form>
 </mat-card>
-
+</div>
 <div class="progressIndicator" [style.display]="isProgressVisible ? 'inline' : 'none' ">
     <mat-progress-spinner class=" example-margin" color="primary" mode="indeterminate"></mat-progress-spinner>
+</div>
 </div>
