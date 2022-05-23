@@ -8,6 +8,7 @@ export class CategoryService {
         name: string;
         color: string;
     }[] = [];
+    reasonList: any[];
     private colors: string[] = ['#0091EA', '#F4511E', '#6DAE43'];
 
     getCategories(items: any[]) {
@@ -26,6 +27,18 @@ export class CategoryService {
             index++;
         })
         return this.categories;
+    }
+
+    getReasons(items: any[]) {
+        let reasons = new Set<string>();
+        this.reasonList = []
+        items.forEach(item => {
+            reasons.add(item.reason)
+        })
+        reasons.forEach(item => {
+            this.reasonList.push(item)
+        })
+        return this.reasonList;
     }
 
     getColor(item: any): string {
