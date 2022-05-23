@@ -64,6 +64,7 @@ import {FeedbackComponent} from './feedback/feedback.component';
 import {SafePipe} from './safe.pipe';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { ReadFeedbackComponent } from './read-feedback/read-feedback.component';
+import { RatingComponent } from './rating/rating.component';
 
 @NgModule({
     declarations: [
@@ -91,7 +92,8 @@ import { ReadFeedbackComponent } from './read-feedback/read-feedback.component';
         FeedbackComponent,
         SafePipe,
         SearchBarComponent,
-        ReadFeedbackComponent
+        ReadFeedbackComponent,
+        RatingComponent
     ],
     imports: [
         BrowserModule,
