@@ -1,3 +1,9 @@
+app-search-bar{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
 th {
     background-color: #0091EA;
     margin: 20px;

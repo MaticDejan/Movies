@@ -1,5 +1,7 @@
-import {Component, OnInit, EventEmitter, Output} from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import {MovieService} from "../services/movie.service";
+import {Router} from "@angular/router";
+
 
 
 @Component({
@@ -8,22 +10,24 @@ import {MovieService} from "../services/movie.service";
   styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent implements OnInit {
+  @Input() movies: any[];
   @Output() search = new EventEmitter();
-  movies: any[];
   title: string;
-  constructor(private movieService: MovieService) { }
+  constructor( private router: Router) { }
 
   ngOnInit(): void {
-    this.movieService.getMovies().subscribe(movies => {
-      this.movies = movies;
-    });
+
   }
-  searchMovie(  ){
-    this.movies.forEach(m => {
-      if (m.title === this.title){
-        this.search.emit(m.title);
+  searchMovie() {
+    if (this.title !== '') {
+      for (let movie of this.movies) {
+        if (movie.title.toLocaleLowerCase().search(this.title.toLocaleLowerCase()) !== -1) {
+          this.search.emit(this.title);
+        }
       }
-    });
+    } else {
+      this.search.emit('');
+    }
   }
 
 

@@ -13,13 +13,17 @@ export class MovieUpdateDeleteComponent implements OnInit {
 
     displayedColumns: string[] = ['title', 'category', 'description', 'imageUrl', 'duration', 'trailerUrl', 'action'];
     dataSource: any;
+    filteredMovies: any[];
     @ViewChild(MatTable, {static: true}) table: MatTable<any>;
 
     constructor(public dialog: MatDialog, private service: MovieService) {
     }
 
     ngOnInit(): void {
-        this.service.getMovies().subscribe(movies => this.dataSource = movies);
+        this.service.getMovies().subscribe(movies => {
+            this.dataSource = movies;
+            this.filteredMovies = movies;
+        });
     }
 
     deleteMovie(movie: any) {
@@ -70,6 +74,11 @@ export class MovieUpdateDeleteComponent implements OnInit {
             }
             return value.title !== row_obj.title;
         });
+    }
+    filterSearch(searchTerm: string) {
+
+        this.filteredMovies = this.dataSource.filter(movie => movie.title.toLowerCase().includes(searchTerm.toLowerCase()) || searchTerm === '');
+
     }
 }
 
