@@ -29,6 +29,4 @@ export class SearchBarComponent implements OnInit {
       this.search.emit('');
     }
   }
-
-
 }
