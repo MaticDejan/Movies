@@ -19,19 +19,22 @@ export class MovieService implements OnInit {
     constructor(private firebase: AngularFireDatabase, private authService: AuthService) {
         this.movieDetailList = firebase.list('movieDetails');
         this.movies = this.movieDetailList.snapshotChanges().pipe(
-            map(res => res.map(c => ({ key: c.payload.key, ...c.payload.val()
+            map(res => res.map(c => ({
+                    key: c.payload.key, ...c.payload.val()
                 }))
             ));
         this.feedbackList = firebase.list('feedbackList');
         this.feedbacks = this.feedbackList.snapshotChanges().pipe(
-            map(res => res.map(c => ({ key: c.payload.key, ...c.payload.val()
+            map(res => res.map(c => ({
+                    key: c.payload.key, ...c.payload.val()
                 }))
             ));
         this.ratingList = firebase.list('ratingList');
         this.ratings = this.ratingList.snapshotChanges().pipe(
-            map(res => res.map(c => ({ key: c.payload.key, ...c.payload.val()
-            }))
-        ));
+            map(res => res.map(c => ({
+                    key: c.payload.key, ...c.payload.val()
+                }))
+            ));
     }
 
     ngOnInit() {
@@ -40,7 +43,6 @@ export class MovieService implements OnInit {
     getMovies() {
         return this.movies;
     }
-
 
 
     getFeedback() {
@@ -60,14 +62,14 @@ export class MovieService implements OnInit {
     }
 
     getRating(title) {
-         let filterRating = [];
+        let filterRating = [];
         this.ratings.subscribe(r => {
             r.forEach(k => {
 
                 console.log(title);
-               if ( k.title === title){
-                   filterRating.push(k);
-               }
+                if (k.title === title) {
+                    filterRating.push(k);
+                }
             })
         })
 
@@ -95,6 +97,6 @@ export class MovieService implements OnInit {
                 duration: formValue.duration,
                 imageUrl: formValue.imageUrl,
                 trailerUrl: formValue.trailerUrl,
-        })
+            })
     }
 }
