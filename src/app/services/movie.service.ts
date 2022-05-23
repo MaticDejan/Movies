@@ -15,6 +15,7 @@ export class MovieService implements OnInit {
     ratingList: AngularFireList<any>;
     ratings: Observable<any[]>;
 
+
     constructor(private firebase: AngularFireDatabase, private authService: AuthService) {
         this.movieDetailList = firebase.list('movieDetails');
         this.movies = this.movieDetailList.snapshotChanges().pipe(
@@ -58,8 +59,19 @@ export class MovieService implements OnInit {
         this.ratingList.push(rating);
     }
 
-    getRating() {
-        return this.ratings;
+    getRating(title) {
+         let filterRating = [];
+        this.ratings.subscribe(r => {
+            r.forEach(k => {
+
+                console.log(title);
+               if ( k.title === title){
+                   filterRating.push(k);
+               }
+            })
+        })
+
+        return filterRating;
     }
 
     deleteRating(rat) {
