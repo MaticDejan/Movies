@@ -70,8 +70,6 @@ export class MovieUpdateDeleteComponent implements OnInit {
         console.log(row_obj.imageUrl);
         this.dataSource = this.dataSource.filter(value => {
             if (value.key === row_obj.key) {
-                console.log(row_obj.imageUrl);
-                console.log(value.imageUrl);
                 this.deleteMovie(value);
             }
             return value.title !== row_obj.title;

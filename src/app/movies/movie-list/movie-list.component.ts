@@ -12,9 +12,6 @@ export class MovieListComponent implements OnInit {
     movieList: any[];
     filteredMovies: any[];
     categoryNames: string[] = [];
-
-
-
     constructor(private service: MovieService, public categoryService: CategoryService) {
     }
 
@@ -26,10 +23,7 @@ export class MovieListComponent implements OnInit {
         });
     }
 
-    filterEvents(selectedFilter: string) {
+    filterMovies(selectedFilter: string) {
         this.filteredMovies = this.movieList.filter(movie => movie.category === selectedFilter || selectedFilter === '');
     }
-
-
-
 }

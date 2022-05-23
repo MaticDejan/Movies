@@ -6,7 +6,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
   styleUrls: ['./filter.component.css']
 })
 export class FilterComponent {
-
+  @Input() default?: string;
   @Input() categories?: string[];
   @Output() selectedFilter = new EventEmitter();
   active: number = -1;

@@ -8,11 +8,18 @@ import {map} from 'rxjs/operators';
 })
 export class MovieService implements OnInit {
     movieDetailList: AngularFireList<any>;
+    feedbackList: AngularFireList<any>;
+    feedbacks: Observable<any[]>;
     movies: Observable<any[]>;
 
     constructor(private firebase: AngularFireDatabase) {
         this.movieDetailList = firebase.list('movieDetails');
         this.movies = this.movieDetailList.snapshotChanges().pipe(
+            map(res => res.map(c => ({ key: c.payload.key, ...c.payload.val()
+                }))
+            ));
+        this.feedbackList = firebase.list('feedbackList');
+        this.feedbacks = this.feedbackList.snapshotChanges().pipe(
             map(res => res.map(c => ({ key: c.payload.key, ...c.payload.val()
                 }))
             ));
@@ -23,6 +30,18 @@ export class MovieService implements OnInit {
 
     getMovies() {
         return this.movies;
+    }
+
+    getFeedback() {
+        return this.feedbacks;
+    }
+
+    deleteFeedback(feedback) {
+        this.firebase.object('/feedbackList/' + feedback.key).remove();
+    }
+
+    insertFeedback(feedback) {
+        this.feedbackList.push(feedback);
     }
 
     insertMovieDetails(movieDetails) {

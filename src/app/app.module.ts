@@ -63,6 +63,7 @@ import { DialogComponent } from './dialog/dialog.component';
 import {FeedbackComponent} from './feedback/feedback.component';
 import {SafePipe} from './safe.pipe';
 import { SearchBarComponent } from './search-bar/search-bar.component';
+import { ReadFeedbackComponent } from './read-feedback/read-feedback.component';
 
 @NgModule({
     declarations: [
@@ -89,7 +90,8 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
         DialogComponent,
         FeedbackComponent,
         SafePipe,
-        SearchBarComponent
+        SearchBarComponent,
+        ReadFeedbackComponent
     ],
     imports: [
         BrowserModule,

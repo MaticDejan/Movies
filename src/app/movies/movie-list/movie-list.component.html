@@ -1,5 +1,5 @@
 <main>
-    <filter (selectedFilter)="filterEvents($event)" [categories]="categoryNames"></filter>
+    <filter (selectedFilter)="filterMovies($event)" [categories]="categoryNames" [default]="'ALL MOVIES'"></filter>
 
     <div class="cards-container">
         <ng-container *ngFor="let movie of filteredMovies">

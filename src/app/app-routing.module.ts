@@ -14,7 +14,9 @@ import {MovieUpdateDeleteComponent} from './movies/movie-update-delete/movie-upd
 import {AdminPageComponent} from './admin-page/admin-page.component';
 import {FeedbackComponent} from './feedback/feedback.component';
 import {AdminGuard} from "./services/admin.guard";
-import {LogoutGuard} from "./services/logout.guard";//
+import {LogoutGuard} from "./services/logout.guard";
+import {ReadFeedbackComponent} from './read-feedback/read-feedback.component';
+//
 
 const routes: Routes = [
     { path: '', redirectTo: 'movie/list', pathMatch: 'full' },
@@ -29,6 +31,7 @@ const routes: Routes = [
         ]},
     {path: 'movie/:title', component: MovieDetailsComponent, canActivate: [AuthGuard]},
     {path: 'admin', component: AdminPageComponent, canActivate: [AuthGuard, AdminGuard]},
+    {path: 'readFeedback', component: ReadFeedbackComponent, canActivate: [AuthGuard, AdminGuard]},
     {path: 'feedback', component: FeedbackComponent, canActivate: [AuthGuard]},
     { path: '**', component: HomeComponent }
     // catch-all in case no other path matched
