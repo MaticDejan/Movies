@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {AngularFireStorage} from "@angular/fire/storage";
 import {finalize} from "rxjs/operators";
-import {AngularFireAuth} from "@angular/fire/auth";
 import {AngularFirestore} from "@angular/fire/firestore";
 import {AuthService} from "../services/auth.service";
+import {MovieService} from '../services/movie.service';
 
 @Component({
     selector: 'app-feedback',
@@ -20,7 +20,7 @@ export class FeedbackComponent implements OnInit {
         description: new FormControl('', Validators.required)
     });
 
-    constructor(private storage: AngularFireStorage, private authService: AuthService, private afs: AngularFirestore) {
+    constructor(private storage: AngularFireStorage, private authService: AuthService, private service: MovieService) {
 
     }
     ngOnInit(): void {
@@ -41,11 +41,11 @@ export class FeedbackComponent implements OnInit {
         if (this.formTemplate.valid) {
 
             var filePath = `${formValue.reason}/${formValue.description}_${this.authService.name}`;
-            const fileRef = this.storage.ref(filePath);
 
             this.storage.upload(filePath, formValue).snapshotChanges().pipe(
                 finalize(() => {
-                        this.resetForm();
+                    this.service.insertFeedback(formValue);
+                    this.resetForm();
                 })
             ).subscribe();
         }
