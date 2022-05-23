@@ -20,7 +20,7 @@ export class MovieComponent implements OnInit {
     description: new FormControl('', Validators.required),
     duration: new FormControl(0, Validators.required),
     imageUrl: new FormControl('', Validators.required),
-    trailerUrl: new FormControl(''),
+    trailerUrl: new FormControl('')
   });
 
   constructor(private storage: AngularFireStorage, private service: MovieService) { }
@@ -72,7 +72,7 @@ export class MovieComponent implements OnInit {
       description: '',
       duration: 0,
       imageUrl: '',
-      trailerUrl: '',
+      trailerUrl: ''
     });
     this.imgSrc = 'assets/images/default.png';
     this.selectedImage = null;

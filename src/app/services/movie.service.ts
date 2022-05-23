@@ -2,6 +2,7 @@ import {Injectable, OnInit} from '@angular/core';
 import {AngularFireDatabase, AngularFireList} from '@angular/fire/database';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {AuthService} from "./auth.service";
 
 @Injectable({
     providedIn: 'root'
@@ -11,8 +12,10 @@ export class MovieService implements OnInit {
     feedbackList: AngularFireList<any>;
     feedbacks: Observable<any[]>;
     movies: Observable<any[]>;
+    ratingList: AngularFireList<any>;
+    ratings: Observable<any[]>;
 
-    constructor(private firebase: AngularFireDatabase) {
+    constructor(private firebase: AngularFireDatabase, private authService: AuthService) {
         this.movieDetailList = firebase.list('movieDetails');
         this.movies = this.movieDetailList.snapshotChanges().pipe(
             map(res => res.map(c => ({ key: c.payload.key, ...c.payload.val()
@@ -23,6 +26,11 @@ export class MovieService implements OnInit {
             map(res => res.map(c => ({ key: c.payload.key, ...c.payload.val()
                 }))
             ));
+        this.ratingList = firebase.list('ratingList');
+        this.ratings = this.ratingList.snapshotChanges().pipe(
+            map(res => res.map(c => ({ key: c.payload.key, ...c.payload.val()
+            }))
+        ));
     }
 
     ngOnInit() {
@@ -31,6 +39,8 @@ export class MovieService implements OnInit {
     getMovies() {
         return this.movies;
     }
+
+
 
     getFeedback() {
         return this.feedbacks;
@@ -42,6 +52,18 @@ export class MovieService implements OnInit {
 
     insertFeedback(feedback) {
         this.feedbackList.push(feedback);
+    }
+
+    insertRating(rating) {
+        this.ratingList.push(rating);
+    }
+
+    getRating() {
+        return this.ratings;
+    }
+
+    deleteRating(rat) {
+        this.firebase.object('/ratingList/' + rat.key).remove();
     }
 
     insertMovieDetails(movieDetails) {
