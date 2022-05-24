@@ -1,8 +1,3 @@
-.page{
-    background-image: url("src/assets/images/back-home.jpeg");
-    background-repeat: no-repeat;
-
-}
 filter{
     display: flex;
     align-items: center;
