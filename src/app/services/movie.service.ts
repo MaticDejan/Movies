@@ -2,7 +2,7 @@ import {Injectable, OnInit} from '@angular/core';
 import {AngularFireDatabase, AngularFireList} from '@angular/fire/database';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {AuthService} from "./auth.service";
+import {AuthService} from './auth.service';
 
 @Injectable({
     providedIn: 'root'
@@ -14,7 +14,6 @@ export class MovieService implements OnInit {
     movies: Observable<any[]>;
     ratingList: AngularFireList<any>;
     ratings: Observable<any[]>;
-
 
     constructor(private firebase: AngularFireDatabase, private authService: AuthService) {
         this.movieDetailList = firebase.list('movieDetails');
@@ -44,6 +43,18 @@ export class MovieService implements OnInit {
         return this.movies;
     }
 
+    copyComments(newTitle, oldTitle) {
+        console.log(oldTitle)
+        console.log(newTitle)
+        this.ratings.subscribe(r => {
+            r.forEach(k => {
+                if (k.title === oldTitle) {
+                    this.deleteRating(k);
+                    this.insertRating({rating: k.rating, title: newTitle, comment: k.comment});
+                }
+            });
+        });
+    }
 
     getFeedback() {
         return this.feedbacks;
@@ -61,23 +72,37 @@ export class MovieService implements OnInit {
         this.ratingList.push(rating);
     }
 
+    getRatings() {
+        return this.ratings;
+    }
+
     getRating(title) {
         let filterRating = [];
+        let filteredFilter = [];
+        let ok = 1;
         this.ratings.subscribe(r => {
             r.forEach(k => {
-
-                console.log(title);
                 if (k.title === title) {
                     filterRating.push(k);
                 }
-            })
-        })
-
-        return filterRating;
+            });
+            filterRating.forEach(filt => {
+                ok = 1;
+                filteredFilter.forEach(f => {
+                    if (f.title === filt.title && f.comment === filt.comment && f.rating === filt.rating) {
+                        ok = 0;
+                    }
+                });
+                if (ok === 1) {
+                    filteredFilter.push(filt);
+                }
+            });
+        });
+        return filteredFilter;
     }
 
-    deleteRating(rat) {
-        this.firebase.object('/ratingList/' + rat.key).remove();
+    deleteRating(rating) {
+        this.firebase.object('/ratingList/' + rating.key).remove();
     }
 
     insertMovieDetails(movieDetails) {
@@ -97,6 +122,6 @@ export class MovieService implements OnInit {
                 duration: formValue.duration,
                 imageUrl: formValue.imageUrl,
                 trailerUrl: formValue.trailerUrl,
-            })
+            });
     }
 }

@@ -39,6 +39,7 @@ export class MovieUpdateDeleteComponent implements OnInit {
         obj.action = action;
         const dialogRef = this.dialog.open(DialogComponent, {
             width: '500px',
+            height: '100%',
             data: obj
         });
 
@@ -67,7 +68,6 @@ export class MovieUpdateDeleteComponent implements OnInit {
     }
 
     deleteRowData(row_obj) {
-        console.log(row_obj.imageUrl);
         this.dataSource = this.dataSource.filter(value => {
             if (value.key === row_obj.key) {
                 this.deleteMovie(value);
@@ -75,10 +75,8 @@ export class MovieUpdateDeleteComponent implements OnInit {
             return value.title !== row_obj.title;
         });
     }
+
     filterSearch(searchTerm: string) {
-
         this.filteredMovies = this.dataSource.filter(movie => movie.title.toLowerCase().includes(searchTerm.toLowerCase()) || searchTerm === '');
-
     }
 }
-

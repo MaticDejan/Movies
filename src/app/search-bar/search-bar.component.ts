@@ -13,7 +13,7 @@ export class SearchBarComponent implements OnInit {
   @Input() movies: any[];
   @Output() search = new EventEmitter();
   title: string;
-  constructor( private router: Router) { }
+  constructor() { }
 
   ngOnInit(): void {
 

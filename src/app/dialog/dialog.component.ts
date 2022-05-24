@@ -14,7 +14,7 @@ export class DialogComponent implements OnInit {
 
     action: string;
     local_data: any;
-
+    old_title: string;
     imgSrc: string;
     selectedImage: any = null;
     formTemplate = new FormGroup({
@@ -32,6 +32,7 @@ export class DialogComponent implements OnInit {
         this.action = this.local_data.action;
         this.imgSrc = this.local_data.imageUrl;
         this.selectedImage = this.local_data.imageUrl;
+        this.old_title = this.local_data.title;
     }
 
     showPreview(event: any) {
@@ -58,12 +59,14 @@ export class DialogComponent implements OnInit {
                         fileRef.getDownloadURL().subscribe((url) => {
                             formValue['imageUrl'] = url;
                             this.service.insertMovieDetails(formValue);
+                            this.service.copyComments(this.local_data.title, this.old_title);
                         });
                     })
                 ).subscribe();
             } else {
                 formValue['imageUrl'] = this.local_data.imageUrl;
                 this.service.insertMovieDetails(formValue);
+                this.service.copyComments(this.local_data.title, this.old_title);
             }
         }
         this.dialogRef.close({event: this.action, data: this.local_data});

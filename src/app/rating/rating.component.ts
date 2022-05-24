@@ -21,7 +21,6 @@ export class RatingComponent implements OnInit {
     });
 
     constructor(private storage: AngularFireStorage, private authService: AuthService, private service: MovieService) {
-
     }
 
     ngOnInit(): void {
@@ -30,6 +29,7 @@ export class RatingComponent implements OnInit {
     }
 
     resetForm() {
+        this.movies = this.service.getRating(this.movieTitle);
         this.formTemplate.reset();
         this.formTemplate.setValue({
             rating: 0,
@@ -42,14 +42,12 @@ export class RatingComponent implements OnInit {
     onSubmit(formValue) {
         this.isSubmitted = true;
         if (this.formTemplate.valid) {
-
-            var filePath = `${formValue.rating}/${formValue.comment}_${this.authService.email}`;
-
+            var directory = `Rating`;
+            var filePath = `${directory}/${formValue.rating}/${formValue.comment}_${this.authService.email}`;
             this.storage.upload(filePath, formValue).snapshotChanges().pipe(
                 finalize(() => {
                     this.service.insertRating(formValue);
                     this.resetForm();
-                    window.location.reload();
                 })
             ).subscribe();
         }
