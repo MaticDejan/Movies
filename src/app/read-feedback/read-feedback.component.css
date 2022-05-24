@@ -1,5 +1,4 @@
 .container {
-
     height: 100%;
     width: 100%;
     background-color: white;
@@ -8,16 +7,11 @@
     border-radius: 10px;
     opacity: 0.9;
 }
-main{
-    background-image: url("src/assets/images/feedbackBackgroungimg.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
 
 .description-container {
     margin: 20px 0;
 }
+
 filter{
     display: flex;
     align-items: center;
