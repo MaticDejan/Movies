@@ -9,6 +9,9 @@
 .description{
     height: 300px;
 }
+.card{
+    opacity: 0.9;
+}
 
 .all {
     text-align: center;

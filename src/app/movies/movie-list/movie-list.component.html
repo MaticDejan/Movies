@@ -1,3 +1,4 @@
+<div class="page">
 <main>
     <filter (selectedFilter)="filterMovies($event)" [categories]="categoryNames" [default]="'ALL MOVIES'"></filter>
 
@@ -6,4 +7,6 @@
             <app-card [routerLink]="['/movie',movie.title]" [image]="movie.imageUrl" [title]="movie.title" [category]="movie.category" [colorCode]="categoryService.getColor(movie)"></app-card>
         </ng-container>
     </div>
+
 </main>
+</div>
