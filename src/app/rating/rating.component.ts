@@ -26,7 +26,6 @@ export class RatingComponent implements OnInit {
 
     ngOnInit(): void {
         this.movies = this.service.getRating(this.movieTitle);
-        console.log(this.movies);
         this.resetForm();
     }
 
