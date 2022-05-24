@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {AngularFireStorage} from "@angular/fire/storage";
 import {finalize} from "rxjs/operators";
-import {AngularFirestore} from "@angular/fire/firestore";
 import {AuthService} from "../services/auth.service";
 import {MovieService} from '../services/movie.service';
 
@@ -39,9 +38,8 @@ export class FeedbackComponent implements OnInit {
     onSubmit(formValue) {
         this.isSubmitted = true;
         if (this.formTemplate.valid) {
-
-            var filePath = `${formValue.reason}/${formValue.description}_${this.authService.name}`;
-
+            var directory = `Feedback`;
+            var filePath = `${directory}/${formValue.reason}/${formValue.description}_${this.authService.name}`;
             this.storage.upload(filePath, formValue).snapshotChanges().pipe(
                 finalize(() => {
                     this.service.insertFeedback(formValue);
