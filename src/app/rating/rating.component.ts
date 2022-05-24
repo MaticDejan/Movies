@@ -15,7 +15,7 @@ export class RatingComponent implements OnInit {
     isSubmitted: boolean;
     @Input() movieTitle = '';
     formTemplate = new FormGroup({
-        rating: new FormControl(0, Validators.required),
+        rating: new FormControl(1, Validators.required),
         comment: new FormControl('', Validators.required),
         title: new FormControl(this.movieTitle)
     });
@@ -29,10 +29,9 @@ export class RatingComponent implements OnInit {
     }
 
     resetForm() {
-        this.movies = this.service.getRating(this.movieTitle);
         this.formTemplate.reset();
         this.formTemplate.setValue({
-            rating: 0,
+            rating: 1,
             comment: '',
             title: this.movieTitle
         });
@@ -48,6 +47,7 @@ export class RatingComponent implements OnInit {
                 finalize(() => {
                     this.service.insertRating(formValue);
                     this.resetForm();
+                    console.log(this.authService.email);
                 })
             ).subscribe();
         }

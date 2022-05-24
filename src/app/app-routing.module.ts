@@ -20,10 +20,10 @@ import {ReadFeedbackComponent} from './read-feedback/read-feedback.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'movie/list', pathMatch: 'full' },
-    { path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [LogoutGuard] },
-    { path: 'login', component: LoginComponent, canActivate: [LogoutGuard] },
+    { path: 'forgot-password', component: ForgotPasswordComponent },
+    { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent, canActivate: [LogoutGuard] },
-    { path: 'home', component: HomeComponent, canActivate: [LogoutGuard] },
+    { path: 'home', component: HomeComponent},
     {path: 'movie', component: MoviesComponent, canActivate: [AuthGuard], children: [
             {path: 'upload', component: MovieComponent, canActivate: [AuthGuard, AdminGuard]},
             {path: 'list', component: MovieListComponent, canActivate: [AuthGuard]},

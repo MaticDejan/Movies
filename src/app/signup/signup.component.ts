@@ -25,13 +25,16 @@ export class SignupComponent implements OnInit {
         if (this.authService.userLoggedIn) {
             if((this.signupForm.value.email.toLocaleLowerCase() === "dejan_andrei45@yahoo.com" ) || ( this.signupForm.value.email.toLocaleLowerCase() === "edy.lata2001@gmail.com") )
                 this.authService.admin = true; // if the user's logged in, navigate them to the dashboard (NOTE: don't use afAuth.currentUser -- it's never null)
+
             this.router.navigate(['movie/list']);
         }
 
         this.signupForm = new FormGroup({
             'displayName': new FormControl('', Validators.required),
             'email': new FormControl('', [Validators.required, Validators.email]),
-            'password': new FormControl('', Validators.required)
+            'password': new FormControl('', Validators.required),
+
+
         });
     }
 

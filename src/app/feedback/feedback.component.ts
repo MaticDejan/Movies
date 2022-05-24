@@ -39,7 +39,7 @@ export class FeedbackComponent implements OnInit {
         this.isSubmitted = true;
         if (this.formTemplate.valid) {
             var directory = `Feedback`;
-            var filePath = `${directory}/${formValue.reason}/${formValue.description}_${this.authService.name}`;
+            var filePath = `${directory}/${formValue.reason}/${formValue.description}_${this.authService.email}`;
             this.storage.upload(filePath, formValue).snapshotChanges().pipe(
                 finalize(() => {
                     this.service.insertFeedback(formValue);
