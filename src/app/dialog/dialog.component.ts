@@ -49,16 +49,22 @@ export class DialogComponent implements OnInit {
     doAction(formValue) {
         if (formValue.title !== '') {
             var directory = `Movies`;
-            var filePath = `${directory}/${formValue.category}/${this.selectedImage.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
-            const fileRef = this.storage.ref(filePath);
-            this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
-                finalize(() => {
-                    fileRef.getDownloadURL().subscribe((url) => {
-                        formValue['imageUrl'] = url;
-                        this.service.insertMovieDetails(formValue);
-                    });
-                })
-            ).subscribe();
+            if (this.selectedImage.name) {
+                console.log(this.local_data.imageUrl);
+                var filePath = `${directory}/${formValue.category}/${this.selectedImage.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
+                const fileRef = this.storage.ref(filePath);
+                this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
+                    finalize(() => {
+                        fileRef.getDownloadURL().subscribe((url) => {
+                            formValue['imageUrl'] = url;
+                            this.service.insertMovieDetails(formValue);
+                        });
+                    })
+                ).subscribe();
+            } else {
+                formValue['imageUrl'] = this.local_data.imageUrl;
+                this.service.insertMovieDetails(formValue);
+            }
         }
         this.dialogRef.close({event: this.action, data: this.local_data});
     }
