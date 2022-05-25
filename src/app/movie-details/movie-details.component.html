@@ -1,6 +1,10 @@
 <div *ngIf="undifindHandle(movie)">
     <div class="details-container">
         <h1>{{movie.title | uppercase}}</h1>
+        <div class="on-line">
+            Duration:&nbsp;&nbsp;
+            <chip text="{{movie.duration}} minutes" [textColor]="'red'"></chip>
+        </div>
         <div class="body-container">
             <div class="image-space">
                 <img src="{{movie.imageUrl}}">
