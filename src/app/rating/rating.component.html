@@ -3,6 +3,7 @@
         <div class="card-body">
             <form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
                 <div class="form-group space">
+                    <div class="space">Rating:</div>
                     <select formControlName="rating" class="form-control">
                         <option value=1>1</option>
                         <option value=2>2</option>
@@ -12,7 +13,8 @@
                     </select>
                 </div>
                 <div class="form-group space">
-                    <textarea class="form-control description" formControlName="comment" placeholder="comment here"></textarea>
+                    <textarea class="form-control description" formControlName="comment"
+                              placeholder="comment here"></textarea>
                     <div class="text-danger" *ngIf="isSubmitted && formControls.comment.errors?.required">This field
                         is
                         required.
@@ -23,19 +25,19 @@
                         <a routerLink="/movie/list" class="btn btn-primary full">Go to Movies</a>
                     </div>
                     <div class="form-group col-md-6">
-                        <button type="submit" class="btn btn-success full">Submit</button>
+                        <button type="submit" class="btn btn-success full to-right">Submit</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
-<ul *ngFor="let movie of movies">
-
-<li>
-    {{movie.rating}}
-</li>
-<li>
-    {{movie.comment}}
-</li>
-</ul>
+<ng-container *ngFor="let movie of movies">
+    <div class="container">
+        <chip text="{{movie.rating}}" [textColor]="'orange'"></chip>
+        <div class="description-container">Comment: {{movie.comment}}</div>
+        <div *ngIf="authService.admin === true">
+            <button class="btn btn-danger" (click)="this.service.deleteRating(movie)">Delete</button>
+        </div>
+    </div>
+</ng-container>

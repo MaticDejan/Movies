@@ -34,7 +34,6 @@ export class MovieService implements OnInit {
                     key: c.payload.key, ...c.payload.val()
                 }))
             ));
-
     }
 
     ngOnInit() {
@@ -83,6 +82,7 @@ export class MovieService implements OnInit {
         let ok = 1;
         this.ratings.subscribe(r => {
             r.forEach(k => {
+                console.log(k);
                 if (k.title === title) {
                     filterRating.push(k);
                 }

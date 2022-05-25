@@ -16,7 +16,6 @@ import {FeedbackComponent} from './feedback/feedback.component';
 import {AdminGuard} from "./services/admin.guard";
 import {LogoutGuard} from "./services/logout.guard";
 import {ReadFeedbackComponent} from './read-feedback/read-feedback.component';
-//
 
 const routes: Routes = [
     { path: '', redirectTo: 'movie/list', pathMatch: 'full' },
