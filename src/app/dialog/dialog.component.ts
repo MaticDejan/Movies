@@ -15,6 +15,7 @@ export class DialogComponent implements OnInit {
     action: string;
     local_data: any;
     old_title: string;
+    old_data: any;
     imgSrc: string;
     selectedImage: any = null;
     formTemplate = new FormGroup({
@@ -33,6 +34,7 @@ export class DialogComponent implements OnInit {
         this.imgSrc = this.local_data.imageUrl;
         this.selectedImage = this.local_data.imageUrl;
         this.old_title = this.local_data.title;
+        this.old_data = this.local_data.title;
     }
 
     showPreview(event: any) {
@@ -51,7 +53,6 @@ export class DialogComponent implements OnInit {
         if (formValue.title !== '') {
             var directory = `Movies`;
             if (this.selectedImage.name) {
-                console.log(this.local_data.imageUrl);
                 var filePath = `${directory}/${formValue.category}/${this.selectedImage.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
                 const fileRef = this.storage.ref(filePath);
                 this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(

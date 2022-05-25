@@ -47,7 +47,6 @@ export class RatingComponent implements OnInit {
                 finalize(() => {
                     this.service.insertRating(formValue);
                     this.resetForm();
-
                 })
             ).subscribe();
         }

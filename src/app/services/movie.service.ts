@@ -44,16 +44,24 @@ export class MovieService implements OnInit {
     }
 
     copyComments(newTitle, oldTitle) {
-        console.log(oldTitle)
-        console.log(newTitle)
-        this.ratings.subscribe(r => {
-            r.forEach(k => {
-                if (k.title === oldTitle) {
-                    this.deleteRating(k);
-                    this.insertRating({rating: k.rating, title: newTitle, comment: k.comment});
-                }
+        let ok = 1;
+        if (newTitle !== oldTitle) {
+            this.ratings.subscribe(r => {
+                r.forEach(k => {
+                    if (k.title === oldTitle) {
+                        this.movies.subscribe(m => {
+                            m.forEach(w => {
+                                if (w.title === oldTitle) {
+                                    this.deleteMovie(w);
+                                }
+                            });
+                            this.deleteRating(k);
+                            this.insertRating({rating: k.rating, title: newTitle, comment: k.comment});
+                        });
+                    }
+                });
             });
-        });
+        }
     }
 
     getFeedback() {
@@ -82,7 +90,6 @@ export class MovieService implements OnInit {
         let ok = 1;
         this.ratings.subscribe(r => {
             r.forEach(k => {
-                console.log(k);
                 if (k.title === title) {
                     filterRating.push(k);
                 }
@@ -104,6 +111,7 @@ export class MovieService implements OnInit {
 
     deleteRating(rating) {
         this.firebase.object('/ratingList/' + rating.key).remove();
+        window.location.reload();
     }
 
     insertMovieDetails(movieDetails) {
