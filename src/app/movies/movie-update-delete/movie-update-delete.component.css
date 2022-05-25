@@ -26,6 +26,11 @@ th {
     align-items: center;
     justify-content: center;
     padding: 15px;
+    inline-size: 150px;
+}
+
+.box {
+    word-break: break-all;
 }
 
 .buttons {
