@@ -42,7 +42,7 @@ export class RatingComponent implements OnInit {
         this.isSubmitted = true;
         if (this.formTemplate.valid) {
             var directory = `Rating`;
-            var filePath = `${directory}/${formValue.rating}/${formValue.comment}_${this.authService.email}`;
+            var filePath = `${directory}/${formValue.rating}/${formValue.comment}_${new Date().getTime()}`;
             this.storage.upload(filePath, formValue).snapshotChanges().pipe(
                 finalize(() => {
                     this.service.insertRating(formValue);
