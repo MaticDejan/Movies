@@ -17,8 +17,7 @@ export class RatingComponent implements OnInit {
     formTemplate = new FormGroup({
         rating: new FormControl(1, Validators.required),
         comment: new FormControl('', Validators.required),
-        title: new FormControl(this.movieTitle),
-        email: new FormControl(this.authService.email)
+        title: new FormControl(this.movieTitle)
     });
 
     constructor(private storage: AngularFireStorage, public authService: AuthService, private service: MovieService) {
@@ -35,7 +34,6 @@ export class RatingComponent implements OnInit {
             rating: 1,
             comment: '',
             title: this.movieTitle,
-            email: this.authService.email
         });
         this.isSubmitted = false;
     }
@@ -49,7 +47,7 @@ export class RatingComponent implements OnInit {
                 finalize(() => {
                     this.service.insertRating(formValue);
                     this.resetForm();
-                    console.log(this.authService.email);
+
                 })
             ).subscribe();
         }
