@@ -59,15 +59,25 @@ export class AuthService {
                     this.admin = true;
                 }
                 const emailLower = user.email.toLowerCase();
-                this.afs.doc('/users/' + emailLower)                        // on a successful signup, create a document in 'users' collection with the new user's info
+                this.afs.doc('/users/' + emailLower)
                     .set({
-                        accountType: 'User',
                         displayName: user.displayName,
                         name: user.displayName,
                         email: user.email,
                         admin: false,
 
                     });
+                if ((user.email.toLocaleLowerCase() === 'dejan_andrei45@yahoo.com') || (user.email.toLocaleLowerCase() === 'edy.lata2001@gmail.com')) {
+                    this.afs.doc('/users/' + emailLower)
+                        .set({
+                            displayName: user.displayName,
+                            name: user.displayName,
+                            email: user.email,
+                            admin: true,
+
+                        });
+                }
+
                 if ((user.email.toLocaleLowerCase() === 'dejan_andrei45@yahoo.com') || (user.email.toLocaleLowerCase() === 'edy.lata2001@gmail.com')) {
                     this.admin = true;
                 }
@@ -99,20 +109,6 @@ export class AuthService {
             });
     }
 
-    async resendVerificationEmail() {                         // verification email is sent in the Sign Up function, but if you need to resend, call this function
-        return (await this.afAuth.currentUser).sendEmailVerification()
-            .then(() => {
-                // this.router.navigate(['home']);
-            })
-            .catch(error => {
-                console.log('Auth Service: sendVerificationEmail error...');
-                console.log('error code', error.code);
-                console.log('error', error);
-                if (error.code) {
-                    return error;
-                }
-            });
-    }
 
     logoutUser(): Promise<void> {
         return this.afAuth.signOut()
@@ -128,19 +124,4 @@ export class AuthService {
                 }
             });
     }
-
-    setUserInfo(payload: object) {
-        console.log('Auth Service: saving user info...');
-        this.afs.collection('users')
-            .add(payload).then(function(res) {
-            console.log('Auth Service: setUserInfo response...');
-            console.log(res);
-        });
-    }
-
-    getCurrentUser() {
-        return this.afAuth.currentUser;                                 // returns user object for logged-in users, otherwise returns null
-    }
-
-
 }

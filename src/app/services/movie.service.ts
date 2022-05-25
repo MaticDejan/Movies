@@ -34,6 +34,7 @@ export class MovieService implements OnInit {
                     key: c.payload.key, ...c.payload.val()
                 }))
             ));
+
     }
 
     ngOnInit() {
