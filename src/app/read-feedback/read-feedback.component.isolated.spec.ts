@@ -1,5 +1,4 @@
-import {MovieService} from '../../services/movie.service';
-import {CategoryService} from '../../services/category.service';
+
 import {ReadFeedbackComponent} from "./read-feedback.component";
 
 describe('ReadFeedbackComponent', () => {

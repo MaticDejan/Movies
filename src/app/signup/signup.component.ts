@@ -15,7 +15,7 @@ export class SignupComponent implements OnInit {
     signupForm: FormGroup;
     firebaseErrorMessage: string;
 
-    constructor(private authService: AuthService, private router: Router, private afAuth: AngularFireAuth) {
+    constructor(private authService: AuthService, private router: Router) {
         this.isProgressVisible = false;
         this.firebaseErrorMessage = '';
     }
@@ -48,7 +48,6 @@ export class SignupComponent implements OnInit {
                 this.authService.admin = true;
             else
                 this.authService.admin = false;
-            this.authService.name = this.signupForm.value.displayName;
             this.authService.email = this.signupForm.value.email;
             this.authService.banAccount = false;
             if (result == null)                                 // null is success, false means there was an error

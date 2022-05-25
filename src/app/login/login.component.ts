@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
             return;
 
         this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password).then((result) => {
-            this.isProgressVisible = false;// no matter what, when the auth service returns, we hide the progress indicator
+            this.isProgressVisible = false;
             this.authService.email = this.loginForm.value.email;
             if (result == null) {                               // null is success, false means there was an error
                 if((this.loginForm.value.email.toLocaleLowerCase() === "dejan_andrei45@yahoo.com" ) || ( this.loginForm.value.email.toLocaleLowerCase() === "edy.lata2001@gmail.com") )
