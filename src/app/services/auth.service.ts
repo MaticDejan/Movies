@@ -12,7 +12,6 @@ export class AuthService {
 
     userLoggedIn: boolean;      // other components can check on this variable for the login status of the user
     admin: boolean;
-    name: string;
     email: string;
     banAccount: boolean;
 
@@ -24,7 +23,6 @@ export class AuthService {
                 if ((user.email.toLocaleLowerCase() === 'dejan_andrei45@yahoo.com') || (user.email.toLocaleLowerCase() === 'edy.lata2001@gmail.com')) {
                     this.admin = true;
                 }
-                this.name = user.displayName;
                 this.userLoggedIn = true;
             } else {
                 this.userLoggedIn = false;
@@ -62,7 +60,6 @@ export class AuthService {
                 this.afs.doc('/users/' + emailLower)
                     .set({
                         displayName: user.displayName,
-                        name: user.displayName,
                         email: user.email,
                         admin: false,
 
@@ -71,7 +68,6 @@ export class AuthService {
                     this.afs.doc('/users/' + emailLower)
                         .set({
                             displayName: user.displayName,
-                            name: user.displayName,
                             email: user.email,
                             admin: true,
 
@@ -81,9 +77,6 @@ export class AuthService {
                 if ((user.email.toLocaleLowerCase() === 'dejan_andrei45@yahoo.com') || (user.email.toLocaleLowerCase() === 'edy.lata2001@gmail.com')) {
                     this.admin = true;
                 }
-                this.name = user.DisplayName;
-                // result.user.sendEmailVerification();
-                // immediately send the user a verification email
             })
             .catch(error => {
                 console.log('Auth Service: signup error', error);
