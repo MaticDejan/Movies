@@ -20,7 +20,7 @@ export class RatingComponent implements OnInit {
         title: new FormControl(this.movieTitle)
     });
 
-    constructor(private storage: AngularFireStorage, public authService: AuthService, private service: MovieService) {
+    constructor(private storage: AngularFireStorage, public authService: AuthService, public service: MovieService) {
     }
 
     ngOnInit(): void {
