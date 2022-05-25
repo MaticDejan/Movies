@@ -44,7 +44,6 @@ export class MovieService implements OnInit {
     }
 
     copyComments(newTitle, oldTitle) {
-        let ok = 1;
         if (newTitle !== oldTitle) {
             this.ratings.subscribe(r => {
                 r.forEach(k => {
