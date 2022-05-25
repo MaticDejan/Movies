@@ -2,7 +2,7 @@ import {MovieService} from '../../services/movie.service';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {MovieComponent} from './movie.component';
 
-describe('MovieListComponent', () => {
+describe('MovieComponent', () => {
     let component: MovieComponent;
     let mockAngularFireStorage, mockMovieService;
 
@@ -11,7 +11,7 @@ describe('MovieListComponent', () => {
     });
 
     describe('onSubmit', () => {
-        it('should not insert the movie if it has required fields uncompleted', () => {
+        it('should not insert the movie if the form has required fields uncompleted', () => {
 
             component.onSubmit({title: '', category: '', description: '', duration: 36, imageUrl: 'i1', trailerUrl: ''});
 
