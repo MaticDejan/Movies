@@ -18,6 +18,13 @@
                         required.
                     </div>
                 </div>
+                <div class="form-group space">
+                    <input class="form-control description" formControlName="email" placeholder="email" [(ngModel)]="authService.email">
+                    <div class="text-danger" *ngIf="isSubmitted && formControls.comment.errors?.required">This field
+                        is
+                        required.
+                    </div>
+                </div>
                 <div class="row space">
                     <div class="form-group col-md-6">
                         <a routerLink="/movie/list" class="btn btn-primary full">Go to Movies</a>
@@ -31,6 +38,9 @@
     </div>
 </div>
 <ul *ngFor="let movie of movies">
+    <li>
+        {{movie.email}}
+    </li>
 <li>
     {{movie.rating}}
 </li>

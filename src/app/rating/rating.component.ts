@@ -17,10 +17,11 @@ export class RatingComponent implements OnInit {
     formTemplate = new FormGroup({
         rating: new FormControl(1, Validators.required),
         comment: new FormControl('', Validators.required),
-        title: new FormControl(this.movieTitle)
+        title: new FormControl(this.movieTitle),
+        email: new FormControl(this.authService.email)
     });
 
-    constructor(private storage: AngularFireStorage, private authService: AuthService, private service: MovieService) {
+    constructor(private storage: AngularFireStorage, public authService: AuthService, private service: MovieService) {
     }
 
     ngOnInit(): void {
@@ -33,7 +34,8 @@ export class RatingComponent implements OnInit {
         this.formTemplate.setValue({
             rating: 1,
             comment: '',
-            title: this.movieTitle
+            title: this.movieTitle,
+            email: this.authService.email
         });
         this.isSubmitted = false;
     }
