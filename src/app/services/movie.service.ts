@@ -104,6 +104,7 @@ export class MovieService implements OnInit {
 
     deleteRating(rating) {
         this.firebase.object('/ratingList/' + rating.key).remove();
+        window.location.reload();
     }
 
     insertMovieDetails(movieDetails) {
